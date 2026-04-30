@@ -1,0 +1,15 @@
+services:
+  marimo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ghcr.io/tk42/marimo-docker:latest
+    container_name: marimo
+    user: python
+    working_dir: /home/python/work
+    volumes:
+      - ./:/home/python/work
+    ports:
+      - "2718:2718"
+    stdin_open: true
+    tty: true

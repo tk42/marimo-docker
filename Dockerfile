@@ -15,5 +15,10 @@ RUN env UV_INSTALL_DIR="/home/python/.local/bin" sh /uv-installer.sh && rm /uv-i
 ENV PATH="/home/python/.local/bin:$PATH"
 RUN chown -Rh python:python /home/python
 
+# Install marimo as the python user so the shim lands in /home/python/.local/bin
+USER python
+RUN uv tool install marimo
+USER root
+
 ENV PS1="[\u@\h:\w]$"
-CMD ["bash"]
+CMD ["marimo", "edit", "--host", "0.0.0.0", "--port", "2718"]
