@@ -20,5 +20,7 @@ USER python
 RUN uv tool install marimo
 USER root
 
+RUN apt install -y fonts-noto-cjk
+
 ENV PS1="[\u@\h:\w]$"
 CMD ["marimo", "edit", "--host", "0.0.0.0", "--port", "2718"]
